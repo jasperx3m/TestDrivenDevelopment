@@ -9,25 +9,28 @@ namespace InventorySystem
 {
     public class ProductFunction
     {
+        #region ViewProducts
         public static List<Product> ViewProducts(List<Product> productlist)
         {
             return productlist;
-        }
-        public static void AddProduct(List<Product> productlist,Product product)
+        } 
+        #endregion
+        #region AddProduct
+        public static void AddProduct(List<Product> productlist, Product product)
         {
             bool uniqueID = false;
             if (productlist.Count == 0)
             {
                 uniqueID = true;
             }
-            foreach(var checkID in productlist)
+            foreach (var checkID in productlist)
             {
                 if (checkID.ProductID != product.ProductID)
                 {
                     uniqueID = true;
                 }
             }
-            if (uniqueID==true)
+            if (uniqueID == true)
             {
                 if (string.IsNullOrWhiteSpace(product.ProductName))
                 {
@@ -63,8 +66,10 @@ namespace InventorySystem
             {
                 throw new ArgumentException("You passed an already used Product ID");
             }
-            
+
         }
+        #endregion
+        #region RemoveProduct
         public static void RemoveProduct(List<Product> productlist, int productID)
         {
             bool containsID = false;
@@ -87,8 +92,10 @@ namespace InventorySystem
                 throw new ArgumentException("There is no such Product ID", "Product ID");
             }
 
-         }
-        public static bool EditProductByID(List<Product> productlist,int id,Product product)
+        }
+        #endregion
+        #region EditProduct
+        public static bool EditProductByID(List<Product> productlist, int id, Product product)
         {
             bool isAvailable = false;
             bool isUnique = true;
@@ -102,17 +109,17 @@ namespace InventorySystem
             }
             foreach (var i in productlist.Where(p => p.ProductID != id))
             {
-                if (product.ProductID==i.ProductID)
+                if (product.ProductID == i.ProductID)
                 {
-                    isUnique = false;    
+                    isUnique = false;
                 }
             }
-            if (isUnique==false)
+            if (isUnique == false)
             {
                 throw new ArgumentException("You passed an an already used ID");
             }
-            
-            if (isAvailable ==true && isUnique==true)
+
+            if (isAvailable == true && isUnique == true)
             {
                 if (string.IsNullOrWhiteSpace(product.ProductName))
                 {
@@ -150,11 +157,12 @@ namespace InventorySystem
                 }
                 return true;
             }
-            
+
             else
             {
                 throw new ArgumentException("Product ID is not found");
             }
-        }
+        } 
+        #endregion
     }
 }

@@ -19,7 +19,7 @@ namespace InventorySystem.Test
             List<Product> productlist = new List<Product>();
             ProductFunction.AddProduct(productlist, product1);
             ProductFunction.AddProduct(productlist, product2);
-
+            ProductFunction.ViewProducts(productlist);
             Assert.True(productlist.Count == 2);
         }
         [Fact]
@@ -38,7 +38,7 @@ namespace InventorySystem.Test
         [InlineData(null,"Chair",22,"Product ID")]//null id
         [InlineData(int.MaxValue,"Chair",null,"Product Quantity")]//Negative quantity
         [InlineData(1001,"",22,"Product Name")]//null productname
-        [InlineData(-100,"Chair",15,"Product ID")]//Decimal ID
+        [InlineData(-100,"Chair",15,"Product ID")]//Negatuve ID
         [InlineData(10002, "Chair",-123,"Product Quantity")]//Negative Quantity
         [InlineData(12, "ChairChairChairChairChairChairChairChairChairChairChairChairChairChairChairChairChairChair",15,"ProductName")]//More than 20 characters
         [InlineData(12, "Ch", 15, "Product Name")]
